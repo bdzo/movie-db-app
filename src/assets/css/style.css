@@ -23,6 +23,14 @@ body {
   color: var(--dark-color-text);
 }
 
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
 a {
   color: var(--dark-color-text);
   text-decoration: none;
@@ -31,6 +39,11 @@ a {
 a:hover,
 a:active {
   color: var(--dark-color-highlight); 
+}
+
+/* XXX */
+.mb-30 {
+  margin-bottom: 30px;
 }
 
 /* Header */
@@ -79,5 +92,15 @@ header {
 
 /* View */
 .view__main-wrapper {
-  padding: 5%;
+  padding: 90px 5% 5% 5%;
+}
+
+.view__grid-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 20px;
+}
+
+.view__grid-wrapper a img { 
+  width: 100%;
 }

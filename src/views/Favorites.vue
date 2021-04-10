@@ -1,6 +1,6 @@
 <template>
   <div class="top-rated">
-    <h1>Favorites</h1>
+    <h2 class="mb-30">Favorites</h2>
   </div>
 </template>
 
