@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Toprated from '../views/Toprated'
-import Upcoming from '../views/Upcoming'
-import Favorites from '../views/Favorites'
+import Popular from '../components/Popular.vue'
+import Toprated from '../components/Toprated'
+import Upcoming from '../components/Upcoming'
+import Favorites from '../components/Favorites'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/',
+    name: 'Popular',
+    component: Popular
   },
   {
     path: '/toprated',
