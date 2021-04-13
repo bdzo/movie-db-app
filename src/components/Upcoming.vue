@@ -2,8 +2,8 @@
   <div class="upcoming">
     <h2 class="mb-30">Upcoming</h2>
 
-    <div class="view__grid-wrapper">
-      <a href="" class="view__grid-item" v-for="upcoming in upcomings" :key="upcoming.id">
+    <div v-for="upcomin in upcomings" :key="upcomin.id" class="view__grid-wrapper">
+      <a href="" class="view__grid-item" v-for="upcoming in upcomin" :key="upcoming.id">
         <div class="view__grid-item-details">
           <h3>{{ upcoming.title }}</h3>
           <p>{{ upcoming.overview.substring(0,220) + "..." }}</p>
@@ -12,6 +12,8 @@
         <img :src="`https://image.tmdb.org/t/p/w500` + upcoming.poster_path" alt="" srcset="">
       </a>
     </div>
+
+    <button @click="loadMore(pageNum)" class="btn-primary">Load More</button>
     
   </div>
 </template>
@@ -21,8 +23,19 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Upcoming',
+  data () {
+    return {
+      pageNum: 1
+    }
+  },
   mounted () {
-    this.$store.dispatch('setUpcoming');
+    this.$store.dispatch('setUpcoming', this.pageNum);
+  },
+  methods: {
+    loadMore() {
+      this.pageNum++;
+      return this.$store.dispatch('setUpcoming', this.pageNum);
+    }
   },
   computed: {
     ...mapState([

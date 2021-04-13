@@ -2,16 +2,19 @@
   <div class="popular">
     <h2 class="mb-30">Popular</h2>
 
-    <div class="view__grid-wrapper">
-      <a href="" class="view__grid-item" v-for="popularItem in popular" :key="popularItem.id">
-        <div class="view__grid-item-details">
-          <h3>{{ popularItem.title }}</h3>
-          <p>{{ popularItem.overview.substring(0,220) + "..." }}</p>
-        </div>
+    <div v-for="populars in popular" :key="populars.id" class="view__grid-wrapper">
+      <a href="" class="view__grid-item" v-for="popularItem in populars" :key="popularItem.id">
 
-        <img :src="`https://image.tmdb.org/t/p/w500` + popularItem.poster_path" alt="" srcset="">
+          <div class="view__grid-item-details">
+            <h3>{{ popularItem.title }}</h3>
+            <p>{{ popularItem.overview.substring(0,220) + "..." }}</p>
+          </div>
+
+          <img :src="`https://image.tmdb.org/t/p/w500` + popularItem.poster_path" alt="" srcset="">
       </a>
     </div>
+
+    <button @click="loadMore(pageNum)" class="btn-primary">Load More</button>
 
   </div>
 </template>
@@ -21,8 +24,19 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Popular',
+  data () {
+    return {
+      pageNum: 1
+    }
+  },
   mounted () {
-    this.$store.dispatch('setPopular');
+    this.$store.dispatch('setPopular', this.pageNum);
+  },
+  methods: {
+    loadMore() {
+      this.pageNum++;
+      return this.$store.dispatch('setPopular', this.pageNum);
+    }
   },
   computed: {
     ...mapState([

@@ -98,7 +98,7 @@ header {
 
 .view__grid-wrapper {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
   grid-gap: 20px;
 }
 
@@ -127,4 +127,16 @@ header {
 
 .view__grid-wrapper a img { 
   width: 100%;
+}
+
+.btn-primary {
+  display: block;
+  margin: 20px auto;
+  padding: 1em;
+  background-color: var(--dark-color-highlight);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: var(--dark-color-primary);
+  cursor: pointer;
 }
