@@ -5,7 +5,7 @@ import Popular from '../components/Popular.vue'
 import Toprated from '../components/Toprated'
 import Upcoming from '../components/Upcoming'
 import Favorites from '../components/Favorites'
-import singleMovie from '../components/singleMovie'
+import SingleMovie from '../components/SingleMovie'
 
 Vue.use(VueRouter)
 
@@ -37,7 +37,7 @@ const routes = [
   },
   {
     path: '/movie/:id',
-    component: singleMovie
+    component: SingleMovie
   }
 ]
 
