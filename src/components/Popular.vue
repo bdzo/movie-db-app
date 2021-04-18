@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <button @click="loadMore(pageNum)" class="btn-primary">Load More</button>
+    <button @click="loadMore(pageNum)" class="btn-primary mrl-auto mtb-20">Load More</button>
 
   </div>
 </template>

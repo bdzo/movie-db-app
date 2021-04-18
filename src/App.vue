@@ -20,6 +20,10 @@
     <div class="view__main-wrapper">
       <router-view/>
     </div>
+
+    <footer>
+      <p>2021. Copyright. All rights reserved. MoviesDB</p>
+    </footer>
   </div>
 </template>
 
