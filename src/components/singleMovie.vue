@@ -1,16 +1,20 @@
 <template>
   <div class="single-movie">
 
-    <div>
+    <div class="single-movie__poster">
       <img :src="'https://image.tmdb.org/t/p/w500/' + singleMovieData.poster_path" alt="" srcset="">
+    </div>
 
-      <h3>{{ singleMovieData.title }}</h3>
-      <p>{{ singleMovieData.genres }}</p>
-      <p>{{ singleMovieData.overview }}</p>
-      <p>Rating: {{ singleMovieData.vote_average }}</p>
-      <p>Release date: {{ singleMovieData.release_date }}</p>
+    <div class="single-movie__details">
+      <h2>{{ singleMovieData.title }}</h2>
+      <p class="single-movie__genre mb-30"><span v-for="genre in singleMovieData.genres" :key="genre.id">{{ genre.name }} </span></p>
 
-      <button class="btn-primary">Add to favorites</button>
+      <p class="mb-30">{{ singleMovieData.overview }}</p>
+
+      <p>Rating: <strong>{{ singleMovieData.vote_average }}</strong></p>
+      <p>Release date: <strong>{{ singleMovieData.release_date }}</strong></p>
+
+      <button class="btn-primary mtb-20">Add to favorites</button>
     </div>
 
   </div>

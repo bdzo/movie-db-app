@@ -31,4 +31,12 @@
   .view__grid-wrapper {
     grid-template-columns: auto auto;
   }
+
+  .single-movie {
+    flex-direction: column;
+  }
+
+  .single-movie__poster {
+    margin-right: 0;
+  }
 }

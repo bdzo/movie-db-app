@@ -42,8 +42,17 @@ a:active {
 }
 
 /* XXX */
+.mrl-auto {
+  margin: 0 auto;
+}
+
 .mb-30 {
   margin-bottom: 30px;
+}
+
+.mtb-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Header */
@@ -131,7 +140,7 @@ header {
 
 .btn-primary {
   display: block;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   padding: 1em;
   background-color: var(--dark-color-highlight);
   border: none;
@@ -139,4 +148,37 @@ header {
   font-size: 16px;
   color: var(--dark-color-primary);
   cursor: pointer;
+}
+
+/* Single movie */
+.single-movie {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-movie__poster {
+  margin-right: 40px;
+}
+
+.single-movie__poster img {
+  width: 100%;
+}
+
+.single-movie__genre {
+  color: var(--dark-color-gray);
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  align-items: center;
+  padding: 20px 5%;
+  background-color: var(--dark-color-secondary);
+  z-index: 99999;
+  line-height: 25px;
 }
