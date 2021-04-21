@@ -168,6 +168,46 @@ header {
   color: var(--dark-color-gray);
 }
 
+/* Favorites */
+.favorites ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  list-style-type: none;
+  border-bottom: 1px solid var(--dark-color-secondary);
+}
+
+.favorites__movie-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.favorites ul li img {
+  width: 80px;
+  margin-right: 1em;
+}
+
+#remove-favorited {
+  width: 30px;
+  height: 30px;
+  font-size: 1em;
+  color: var(--dark-color-text);
+  border: 1px solid var(--dark-color-text);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#remove-favorited:hover {
+  border: 1px solid var(--dark-color-highlight);
+  color: var(--dark-color-highlight)
+}
+
 /* Footer */
 footer {
   display: flex;

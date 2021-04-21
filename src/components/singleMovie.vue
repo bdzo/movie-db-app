@@ -14,7 +14,11 @@
       <p>Rating: <strong>{{ singleMovieData.vote_average }}</strong></p>
       <p>Release date: <strong>{{ singleMovieData.release_date }}</strong></p>
 
-      <button class="btn-primary mtb-20">Add to favorites</button>
+      <AddToFavorites 
+        :id="this.id"
+        :name="singleMovieData.title"
+        :posterPath="singleMovieData.poster_path"
+      ></AddToFavorites>
     </div>
 
   </div>
@@ -22,9 +26,13 @@
 
 <script>
 import { mapState} from 'vuex'
+import AddToFavorites from './AddToFavorites.vue'
 
 export default {
   name: 'SingleMovie',
+  components: {
+    AddToFavorites
+  },
   data() {
     return {
       id: this.$route.params.id
