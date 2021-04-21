@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 :root {
-  --dark-color-primary: #151515;
-  --dark-color-secondary: #101010;
-  --dark-color-gray: #707070;
-  --dark-color-highlight: #F2A365;
-  --dark-color-text: #fff;
+  --dark-color-primary: #0d1117;
+  --dark-color-secondary: #21262d;
+  --dark-color-gray: #30363d;
+  --dark-color-highlight: #f9826c;
+  --dark-color-text: #c9d1d9;
+  --color-header-bg: #161b22;
 }
 
 * {
@@ -14,13 +15,22 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background-color: var(--dark-color-primary);
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1em;
   color: var(--dark-color-text);
+}
+
+#app {
+  height: 100%;
 }
 
 h1 {
@@ -65,7 +75,7 @@ header {
   top: 0;
   align-items: center;
   padding: 10px 5%;
-  background-color: var(--dark-color-secondary);
+  background-color: var(--color-header-bg);
   z-index: 99999;
 }
 
@@ -83,7 +93,7 @@ header {
 .header__search-bar input{
   width: 100%;
   padding: 10px;
-  background-color: var(--dark-color-secondary);
+  background-color: var(--dark-color-primary);
   border: 1px solid var(--dark-color-gray);
   border-radius: 5px;
   outline: none;
@@ -140,16 +150,22 @@ header {
 
 .btn-primary {
   display: block;
-  /* margin: 20px auto; */
   padding: 1em;
-  background-color: var(--dark-color-highlight);
-  border: none;
+  background-color: var(--dark-color-secondary);
+  border: 1px solid var(--dark-color-gray);
   border-radius: 5px;
   font-size: 16px;
-  color: var(--dark-color-primary);
+  color: var(--dark-color-text);
   cursor: pointer;
+  transition: .3s;
 }
 
+.btn-primary:hover {
+  border: 1px solid var(--dark-color-highlight);
+  color: var(--dark-color-highlight);
+  background-color: var(--dark-color-primary);
+}
+ 
 /* Single movie */
 .single-movie {
   display: flex;
@@ -214,7 +230,7 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  position: relative;
+  position: absolute;
   bottom: 0;
   align-items: center;
   padding: 20px 5%;
