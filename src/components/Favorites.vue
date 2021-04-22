@@ -32,32 +32,18 @@ export default {
   },
 
   methods: {
-    // TODO: - Remove item from favorites// TODO: - Remove item from favorites
-    removeFavoritedItem() { //favoritedItemId
-      let getFavoritedMovie = localStorage.getItem('favoritesData');
-      getFavoritedMovie = JSON.parse(getFavoritedMovie)
+    removeFavoritedItem(favoritedItemId) {
 
-      for(let i = 0; i < getFavoritedMovie.length; i++) {
-        console.log('TODO: - Remove item from favorites');
+      for(let i = 0; i < this.favoritesData.length; i++) {        
+        if (favoritedItemId == this.favoritesData[i].id) {
+          let movieIndex = this.favoritesData.indexOf(this.favoritesData[i]);
+          this.favoritesData.splice(movieIndex, 1);
 
-
-        // let favoritedItemLsId = getFavoritedMovie[i]['id'];
-        // if (favoritedItemId[favoritedItemLsId.id] !== -1) {
-        //   console.log('true');
-        //   // getFavoritedMovie.splice(i, 1);
-        // }   
-
-        // if(favoritedItemId == getFavoritedMovie[i]['id']) {
-        //   getFavoritedMovie.
-        // }
-
-        // console.log(getFavoritedMovie[i]['id']);
-        // console.log(favoritedItemId);
-        // if (favoritedItemId == getFavoritedMovie.key('id')) {
-        //   console.log(favoritedItemId)
-        // }
-      }
-
+          JSON.parse(localStorage.getItem('favoritesData'));
+          localStorage.setItem("favoritesData", JSON.stringify(this.favoritesData));
+        }
+      }   
+      
     }
   }
 }
