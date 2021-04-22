@@ -3,7 +3,8 @@
     <h2 class="mb-30">Popular</h2>
 
     <div v-for="populars in popular" :key="populars.id" class="view__grid-wrapper">
-      <a href="" class="view__grid-item" v-for="popularItem in populars" :key="popularItem.id">
+      <div class="view__grid-item" v-for="popularItem in populars" :key="popularItem.id">
+        <router-link v-bind:to="'/movie/' + popularItem.id">
 
           <div class="view__grid-item-details">
             <h3>{{ popularItem.title }}</h3>
@@ -11,10 +12,11 @@
           </div>
 
           <img :src="`https://image.tmdb.org/t/p/w500` + popularItem.poster_path" alt="" srcset="">
-      </a>
+        </router-link>
+      </div>
     </div>
 
-    <button @click="loadMore(pageNum)" class="btn-primary">Load More</button>
+    <button @click="loadMore(pageNum)" class="btn-primary mrl-auto mtb-20">Load More</button>
 
   </div>
 </template>

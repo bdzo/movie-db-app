@@ -5,6 +5,7 @@ import Popular from '../components/Popular.vue'
 import Toprated from '../components/Toprated'
 import Upcoming from '../components/Upcoming'
 import Favorites from '../components/Favorites'
+import SingleMovie from '../components/SingleMovie'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ const routes = [
     path: '/favorites',
     name: 'Favorites',
     component: Favorites
+  },
+  {
+    path: '/movie/:id',
+    component: SingleMovie
   }
 ]
 
