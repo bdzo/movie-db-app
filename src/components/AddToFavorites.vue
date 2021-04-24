@@ -13,7 +13,7 @@ export default {
   
   methods: {
     addToFavorites() {
-      const addToFavoritesData = {
+      let addToFavoritesData = {
         "id": this.id,
         "name": this.name,
         "posterPath": this.posterPath
@@ -21,8 +21,8 @@ export default {
       
       let favoritesData = [];
       favoritesData = JSON.parse(localStorage.getItem('favoritesData')) || [];
-      favoritesData.push(addToFavoritesData);
 
+      favoritesData.push(addToFavoritesData);
       localStorage.setItem("favoritesData", JSON.stringify(favoritesData));
     }
   }

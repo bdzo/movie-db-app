@@ -4,7 +4,7 @@
 
     <div v-for="populars in popular" :key="populars.id" class="view__grid-wrapper">
       <div class="view__grid-item" v-for="popularItem in populars" :key="popularItem.id">
-        <router-link v-bind:to="'/movie/' + popularItem.id">
+        <router-link :to="'/movie/' + popularItem.id">
 
           <div class="view__grid-item-details">
             <h3>{{ popularItem.title }}</h3>
@@ -31,15 +31,18 @@ export default {
       pageNum: 1
     }
   },
+
   mounted () {
     this.$store.dispatch('setPopular', this.pageNum);
   },
+
   methods: {
     loadMore() {
       this.pageNum++;
       return this.$store.dispatch('setPopular', this.pageNum);
     }
   },
+  
   computed: {
     ...mapState([
       'popular'

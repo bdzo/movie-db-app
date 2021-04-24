@@ -9,7 +9,8 @@ export default new Vuex.Store({
     popular: [],
     topRated: [],
     upcomings: [],
-    singleMovieData: null
+    singleMovieData: null,
+    searchResults: null
   },
 
   mutations: {
@@ -27,13 +28,17 @@ export default new Vuex.Store({
 
     SET_SIGLE_MOVIE_DATE(state, singleMovieData) {
       state.singleMovieData = singleMovieData;
+    },
+
+    SET_SEARCH_RESULTS(state, searchResults) {
+      state.searchResults = searchResults;
     }
   },
 
   actions: {
     setPopular({ commit }, pageNum) {
       axios
-        .get('https://api.themoviedb.org/3/movie/popular?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=' + pageNum)
+        .get(`https://api.themoviedb.org/3/movie/popular?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=${pageNum}`)
         .then(response => {
           let popular = [];
           popular.push(response.data.results);
@@ -44,7 +49,7 @@ export default new Vuex.Store({
 
     setTopRated({ commit }, pageNum) {
       axios
-        .get('https://api.themoviedb.org/3/movie/top_rated?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=' + pageNum)
+        .get(`https://api.themoviedb.org/3/movie/top_rated?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=${pageNum}`)
         .then(response => {
           let topRated = [];
           topRated.push(response.data.results);
@@ -55,7 +60,7 @@ export default new Vuex.Store({
 
     setUpcoming({ commit }, pageNum) {
       axios
-        .get('https://api.themoviedb.org/3/movie/upcoming?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=' + pageNum)
+        .get(`https://api.themoviedb.org/3/movie/upcoming?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=${pageNum}`)
         .then(response => {
           let upcomings = []; 
           upcomings.push(response.data.results);
@@ -66,12 +71,23 @@ export default new Vuex.Store({
 
     getSingleMovieData({commit}, id) {
       axios
-        .get('https://api.themoviedb.org/3/movie/' + id + '?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US')
+        .get(`https://api.themoviedb.org/3/movie/${id}?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US`)
         .then(response => {
           let singleMovieData = response.data;
           commit('SET_SIGLE_MOVIE_DATE', singleMovieData)
         })
         .catch(error => console.log(error))
+    },
+
+    getSearchResults({commit}, searchInput) {
+      axios
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&query=${searchInput}`)
+        .then(response => {
+          let searchResults = response.data.results;
+          commit('SET_SEARCH_RESULTS', searchResults);
+          console.log(searchResults);
+        })
+        .catch(error => console.log(error));
     }
   },
 
