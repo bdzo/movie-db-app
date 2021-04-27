@@ -13,7 +13,7 @@
       <ul>
         <li v-for="searchResult in this.searchResults" :key="searchResult.id" class="header__search-result">
           <router-link :to="'/movie/' + searchResult.id">
-            {{ searchResult.title.substring(0,50) + "..." }}
+            {{ searchResult.title.substring(0,60) + "..." }}
           </router-link>
         </li>
       </ul>
