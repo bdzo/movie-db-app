@@ -1,6 +1,16 @@
-@media only screen and (max-width: 1281px) {
+@media only screen and (min-width: 1281px) {
   .view__grid-wrapper {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
+  }
+
+  .header__search-bar, .header__search-results {
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .header__search-bar, .header__search-results {
+    max-width: 320px;
   }
 }
 
@@ -9,7 +19,7 @@
     flex-direction: column;
   }
 
-  .header__search-bar {
+  .header__search-bar, .header__search-results {
     width: 100%;
     margin: 10px 0px;
   }

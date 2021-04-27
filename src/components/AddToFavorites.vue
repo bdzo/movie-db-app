@@ -13,7 +13,7 @@ export default {
   
   methods: {
     addToFavorites() {
-      const addToFavoritesData = {
+      let addToFavoritesData = {
         "id": this.id,
         "name": this.name,
         "posterPath": this.posterPath
@@ -21,8 +21,21 @@ export default {
       
       let favoritesData = [];
       favoritesData = JSON.parse(localStorage.getItem('favoritesData')) || [];
-      favoritesData.push(addToFavoritesData);
+      console.log(favoritesData);
 
+      // for (let i = 0; i < favoritesData.length; i++) {
+      //   console.log(addToFavoritesData.id, favoritesData[i].id);
+        
+      //   if (addToFavoritesData.id != favoritesData[i].id) {
+      //     favoritesData.push(addToFavoritesData);
+      //     localStorage.setItem("favoritesData", JSON.stringify(favoritesData));
+      //     alert('Movie added to favorites.');
+      //   } else {
+      //     alert('Movie already in favorites.');
+      //   }
+      // }
+
+      favoritesData.push(addToFavoritesData);
       localStorage.setItem("favoritesData", JSON.stringify(favoritesData));
     }
   }
