@@ -33,16 +33,12 @@ export default {
     }
   },
 
-  mounted () {
-    window.addEventListener("keydown", function() {});
-  },
-
   methods: {
     searchMovie() {
       this.$store.dispatch('getSearchResults', this.searchInput);
 
-      if (this.searchInput.length == 0) { this.hideSearchResults = true; }
-      else { this.hideSearchResults = false }
+      if (this.searchInput.length == 0) this.hideSearchResults = true;
+      else this.hideSearchResults = false
     }
   },
 
