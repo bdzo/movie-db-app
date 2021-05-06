@@ -2,7 +2,7 @@
   <div class="single-movie">
 
     <div class="single-movie__poster">
-      <img :src="'https://image.tmdb.org/t/p/w500/' + singleMovieData.poster_path" alt="" srcset="">
+      <img :src="`https://image.tmdb.org/t/p/w500/${singleMovieData.poster_path}`" alt="" srcset="">
     </div>
 
     <div class="single-movie__details">
@@ -14,11 +14,10 @@
       <p>Rating: <strong>{{ singleMovieData.vote_average }}</strong></p>
       <p>Release date: <strong>{{ singleMovieData.release_date }}</strong></p>
 
-      <AddToFavorites 
-        :id="this.id"
-        :name="singleMovieData.title"
-        :posterPath="singleMovieData.poster_path"
-      ></AddToFavorites>
+      <AppButton 
+        title="Add to favorites"
+        @method="addToFavorites"
+      ></AppButton>
     </div>
 
   </div>
@@ -26,25 +25,38 @@
 
 <script>
 import { mapState} from 'vuex'
-import AddToFavorites from './AddToFavorites.vue'
+import AppButton from '../components/AppButton.vue'
 
 export default {
   name: 'SingleMovie',
   components: {
-    AddToFavorites
+    AppButton
   },
   data() {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
     }
   },
   created() {
     this.$store.dispatch('getSingleMovieData', this.id);
   },
   computed: {
-    ...mapState([
-      'singleMovieData'
-    ])
+    ...mapState(['singleMovieData'])
+  },
+  methods: {
+    addToFavorites() {
+      let addToFavoritesData = {
+        'id': this.id
+        // TODO: add values for 'name' and 'posterPathx'
+      };
+      
+      let favoritesData = [];
+      favoritesData = JSON.parse(localStorage.getItem('favoritesData')) || [];
+      console.log(favoritesData);
+
+      favoritesData.push(addToFavoritesData);
+      localStorage.setItem('favoritesData', JSON.stringify(favoritesData));
+    }
   }
 }
 </script>
