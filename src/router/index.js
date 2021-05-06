@@ -1,20 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Popular from '../components/Popular.vue'
-import Toprated from '../components/Toprated'
-import Upcoming from '../components/Upcoming'
-import Favorites from '../components/Favorites'
-import SingleMovie from '../components/SingleMovie'
+import Toprated from '../views/Toprated'
+import Upcoming from '../views/Upcoming'
+import Favorites from '../views/Favorites'
+import SingleMovie from '../views/SingleMovie'
+import Popular from '../views/Popular.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/',
     name: 'Popular',
