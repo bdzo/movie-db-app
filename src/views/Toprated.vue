@@ -2,43 +2,48 @@
   <div class="top-rated">
     <h2 class="mb-30">Top rated</h2>
 
-    <div v-for="topRateds in topRated" :key="topRateds.id"  class="view__grid-wrapper">
-      <div class="view__grid-item" v-for="topRate in topRateds" :key="topRate.id">
-        <router-link v-bind:to="'/movie/' + topRate.id">
-          <div class="view__grid-item-details">
-            <h3>{{ topRate.title }}</h3>
-            <p>{{ topRate.overview.substring(0,220) + "..." }}</p>
-          </div>
+    <AppCard
+      :card-data=topRated
+    ></AppCard>
 
-          <img :src="`https://image.tmdb.org/t/p/w500` + topRate.poster_path" alt="" srcset="">
-        </router-link>
-      </div>
-    </div>
-
-    <button @click="loadMore(pageNum)" class="btn-primary mrl-auto mtb-20">Load More</button>
+    <AppButton
+      title="Load more"
+      @method="loadMore(pageNum)"
+      class="btn-primary mrl-auto mtb-20"
+    ></AppButton>
     
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import AppButton from '../components/AppButton'
+import AppCard from '../components/AppCard'
 
 export default {
   name: 'Toprated',
-  data () {
+  components: {
+    AppButton,
+    AppCard
+  },
+
+  data() {
     return {
       pageNum: 1
     }
   },
-  mounted () {
+
+  mounted() {
     this.$store.dispatch('setTopRated', this.pageNum);
   },
+
   methods: {
     loadMore() {
       this.pageNum++;
       return this.$store.dispatch('setTopRated', this.pageNum);
     }
   },
+  
   computed: {
     ...mapState([
       'topRated'

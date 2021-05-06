@@ -32,26 +32,27 @@ export default {
   components: {
     AppButton
   },
+  
   data() {
     return {
       id: this.$route.params.id,
     }
   },
+
   created() {
     this.$store.dispatch('getSingleMovieData', this.id);
   },
+
   computed: {
     ...mapState(['singleMovieData'])
   },
+
   methods: {
     addToFavorites() {
       let addToFavoritesData = {
         'id': this.id,
         'name': this.$store.state.singleMovieData.title,
         'posterPath': this.$store.state.singleMovieData.poster_path,
-
-
-        // TODO: add values for 'name' and 'posterPath'
       };
       
       let favoritesData = [];
