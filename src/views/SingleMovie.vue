@@ -46,8 +46,12 @@ export default {
   methods: {
     addToFavorites() {
       let addToFavoritesData = {
-        'id': this.id
-        // TODO: add values for 'name' and 'posterPathx'
+        'id': this.id,
+        'name': this.$store.state.singleMovieData.title,
+        'posterPath': this.$store.state.singleMovieData.poster_path,
+
+
+        // TODO: add values for 'name' and 'posterPath'
       };
       
       let favoritesData = [];
