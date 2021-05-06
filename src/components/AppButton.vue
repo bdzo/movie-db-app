@@ -21,7 +21,6 @@ export default {
     buttonEvent() {
       this.$emit('method')
     }
-    
   }
 }
 </script>

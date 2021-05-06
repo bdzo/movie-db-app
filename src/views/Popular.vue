@@ -2,37 +2,38 @@
   <div class="popular">
     <h2 class="mb-30">Popular</h2>
 
-    <div v-for="populars in popular" :key="populars.id" class="view__grid-wrapper">
-      <div class="view__grid-item" v-for="popularItem in populars" :key="popularItem.id">
-        <router-link :to="'/movie/' + popularItem.id">
+    <AppCard
+      :card-data=popular
+    ></AppCard>
 
-          <div class="view__grid-item-details">
-            <h3>{{ popularItem.title }}</h3>
-            <p>{{ popularItem.overview.substring(0,220) + "..." }}</p>
-          </div>
-
-          <img :src="`https://image.tmdb.org/t/p/w500` + popularItem.poster_path" alt="" srcset="">
-        </router-link>
-      </div>
-    </div>
-
-    <button @click="loadMore(pageNum)" class="btn-primary mrl-auto mtb-20">Load More</button>
+    <AppButton
+      title="Load more"
+      @method="loadMore(pageNum)"
+      class="btn-primary mrl-auto mtb-20"
+    ></AppButton>
 
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import AppButton from '../components/AppButton'
+import AppCard from '../components/AppCard'
 
 export default {
   name: 'Popular',
-  data () {
+  components: {
+    AppButton,
+    AppCard
+  },
+
+  data() {
     return {
       pageNum: 1
     }
   },
 
-  mounted () {
+  mounted() {
     this.$store.dispatch('setPopular', this.pageNum);
   },
 
