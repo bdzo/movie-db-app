@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { MoviesSevice } from '../services/movies'
 
 Vue.use(Vuex)
+const baseUrl = 'https://api.themoviedb.org/3/movie/'
+const apiKey = '6fa7ab7aeacd59b453d8dbb3b3d65234'
+const language = 'en-US'
+
+const movieService = new MoviesSevice(baseUrl, apiKey, language)
 
 export default new Vuex.Store({
   state: {
@@ -15,11 +21,11 @@ export default new Vuex.Store({
 
   mutations: {
     SET_POPULAR(state, popular) {
-      state.popular.push(popular[0]);
+      state.popular.push(popular)
     },
 
     SET_TOPRATED(state, topRated) {
-      state.topRated.push(topRated[0]);
+      state.topRated.push(topRated);
     },
 
     SET_UPCOMING(state, upcomings) {
@@ -37,12 +43,10 @@ export default new Vuex.Store({
 
   actions: {
     setPopular({ commit }, pageNum) {
-      axios
-        .get(`https://api.themoviedb.org/3/movie/popular?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=${pageNum}`)
-        .then(response => {
-          let popular = [];
-          popular.push(response.data.results);
-          commit('SET_POPULAR', popular);
+      movieService
+        .popular( pageNum )
+        .then( (results) => {
+          commit('SET_POPULAR', results)
         })
         .catch(error => console.log(error))
     },
@@ -51,9 +55,7 @@ export default new Vuex.Store({
       axios
         .get(`https://api.themoviedb.org/3/movie/top_rated?api_key=6fa7ab7aeacd59b453d8dbb3b3d65234&language=en-US&page=${pageNum}`)
         .then(response => {
-          let topRated = [];
-          topRated.push(response.data.results);
-          commit('SET_TOPRATED', topRated);
+          commit('SET_TOPRATED', response.data.results);
         })
         .catch(error => console.log(error))
     },
