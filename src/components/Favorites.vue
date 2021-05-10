@@ -18,33 +18,25 @@
 </template>
 
 <script>
+import { StorageService } from '../services/storage'
 export default {
   name: 'Favorites',
+
   data() {
+
+    const storage = new StorageService('favorites')
+
     return {
-      favoritesData: null
+      favoritesStorage: storage,
+      favoritesData: storage.index()
     }
   },
 
-  created() {
-    let favoritesStorageData = localStorage.getItem('favoritesData');
-    this.favoritesData = JSON.parse(favoritesStorageData);
-  },
-
   methods: {
-    removeFavoritedItem(favoritedItemId) {
-
-      for (let i = 0; i < this.favoritesData.length; i++) {        
-        if (favoritedItemId == this.favoritesData[i].id) {
-          let movieIndex = this.favoritesData.indexOf(this.favoritesData[i]);
-          this.favoritesData.splice(movieIndex, 1);
-
-          JSON.parse(localStorage.getItem('favoritesData'));
-          localStorage.setItem("favoritesData", JSON.stringify(this.favoritesData));
-
-          alert('Item removed from favorites');
-        }
-      }   
+    removeFavoritedItem(id) {
+      this.favoritesStorage.delete(id)
+      this.favoritesData = this.favoritesStorage.index()
+      alert('Item removed from favorites');
     }
     
   }

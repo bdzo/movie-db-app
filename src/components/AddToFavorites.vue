@@ -1,8 +1,13 @@
 <template>
-    <button @click="addToFavorites()" class="btn-primary mtb-20">Add to favorites</button>
+    <button @click="addToFavorites({
+        id: id,
+        name: name,
+        posterPath: posterPath
+      })" class="btn-primary mtb-20">Add to favorites</button>
 </template>
 
 <script>
+import { StorageService } from '../services/storage'
 export default {
   name: 'AddToFavorites',
   props: {
@@ -10,33 +15,17 @@ export default {
     name: String,
     posterPath: String
   },
+
+  data() {
+    const storage = new StorageService( 'favorites' )
+    return {
+      favoritesStorage: storage,
+    }
+  },
   
   methods: {
-    addToFavorites() {
-      let addToFavoritesData = {
-        "id": this.id,
-        "name": this.name,
-        "posterPath": this.posterPath
-      };
-      
-      let favoritesData = [];
-      favoritesData = JSON.parse(localStorage.getItem('favoritesData')) || [];
-      console.log(favoritesData);
-
-      // for (let i = 0; i < favoritesData.length; i++) {
-      //   console.log(addToFavoritesData.id, favoritesData[i].id);
-        
-      //   if (addToFavoritesData.id != favoritesData[i].id) {
-      //     favoritesData.push(addToFavoritesData);
-      //     localStorage.setItem("favoritesData", JSON.stringify(favoritesData));
-      //     alert('Movie added to favorites.');
-      //   } else {
-      //     alert('Movie already in favorites.');
-      //   }
-      // }
-
-      favoritesData.push(addToFavoritesData);
-      localStorage.setItem("favoritesData", JSON.stringify(favoritesData));
+    addToFavorites(item) {
+      this.favoritesStorage.create(item)
     }
   }
 }
