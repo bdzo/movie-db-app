@@ -17,7 +17,7 @@
 <script>
 import SearchBar from "./SearchBar";
 export default {
-  name: 'Header',
+  name: 'AppHeader',
   components: {
     SearchBar
   }
